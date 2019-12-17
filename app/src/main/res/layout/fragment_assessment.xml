@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Ll_both_match_heading"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/Toolbar">
+
+        <ImageView
+            android:id="@+id/iv_backBtn"
+            style="@style/imgvw_normal"
+            android:src="@drawable/ic_arrow_back_white_24dp"
+            android:layout_gravity="start"
+            android:contentDescription="@string/backgroung" />
+
+
+        <TextView
+            style="@style/tv_normal"
+            android:text="@string/grade1"
+            android:textSize="@dimen/sp19"
+            android:layout_gravity="center"
+            android:textColor="@color/colorWhite"/>
+
+
+        <!--<ImageView
+            android:id="@+id/iv_sendAddDept"
+            style="@style/imgvw_normal"
+            android:layout_width="@dimen/dp25"
+            android:layout_height="@dimen/dp25"
+            android:src="@drawable/ic_send_black_24dp"
+            android:layout_gravity="end"
+            android:layout_marginRight="@dimen/dp10"
+            android:contentDescription="@string/backgroung" />-->
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        style="@style/Ll_normal_vtl"
+        android:background="@drawable/card_design">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/dp5"
+                app:cardCornerRadius="@dimen/dp10"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:layout_margin="@dimen/dp10">
+
+                <TextView
+                    android:id="@+id/tv_App"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="wrap_content"
+                    android:text="@string/a_plus_plus"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/sp18"
+                    android:padding="@dimen/dp10"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/dp5"
+                app:cardCornerRadius="@dimen/dp10"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:layout_margin="@dimen/dp10">
+
+                <TextView
+                    android:id="@+id/tv_Ap"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="wrap_content"
+                    android:text="@string/a_plus"
+                    android:gravity="center"
+                    android:textSize="@dimen/sp18"
+                    android:textColor="@color/textColor"
+                    android:padding="@dimen/dp10"
+                    android:background="@color/white"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/dp5"
+                app:cardCornerRadius="@dimen/dp10"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:layout_margin="@dimen/dp10">
+
+                <TextView
+                    android:id="@+id/tv_A"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="wrap_content"
+                    android:text="A"
+                    android:gravity="center"
+                    android:textSize="@dimen/sp18"
+                    android:textColor="@color/textColor"
+                    android:padding="@dimen/dp10"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/dp5"
+                app:cardCornerRadius="@dimen/dp10"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:layout_margin="@dimen/dp10">
+
+                <TextView
+                    android:id="@+id/tv_B_plus"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="wrap_content"
+                    android:text="@string/b_plus"
+                    android:gravity="center"
+                    android:textSize="@dimen/sp18"
+                    android:textColor="@color/textColor"
+                    android:padding="@dimen/dp10"/>
+
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/card_design">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="@dimen/dp5"
+                    app:cardCornerRadius="@dimen/dp10"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:layout_margin="@dimen/dp10">
+
+                    <TextView
+                        android:id="@+id/tv_B"
+                        android:layout_width="@dimen/dp70"
+                        android:layout_height="wrap_content"
+                        android:text="@string/b"
+                        android:gravity="center"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/sp18"
+                        android:padding="@dimen/dp10"/>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="@dimen/dp5"
+                    app:cardCornerRadius="@dimen/dp10"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:layout_margin="@dimen/dp10">
+
+                    <TextView
+                        android:id="@+id/tv_C"
+                        android:layout_width="@dimen/dp70"
+                        android:layout_height="wrap_content"
+                        android:text="@string/c"
+                        android:gravity="center"
+                        android:textSize="@dimen/sp18"
+                        android:textColor="@color/textColor"
+                        android:padding="@dimen/dp10"
+                        android:background="@color/white"/>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="@dimen/dp5"
+                    app:cardCornerRadius="@dimen/dp10"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:layout_margin="@dimen/dp10">
+
+                    <TextView
+                        android:id="@+id/tv_D"
+                        android:layout_width="@dimen/dp70"
+                        android:layout_height="wrap_content"
+                        android:text="@string/d"
+                        android:gravity="center"
+                        android:textSize="@dimen/sp18"
+                        android:textColor="@color/textColor"
+                        android:padding="@dimen/dp10"/>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/dp10">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp30"
+                    android:background="@drawable/bottom_bg">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/grade1"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp20"
+                        android:textColor="@color/white"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="@dimen/dp20"
+                        tools:ignore="RelativeOverlap" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/marks"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dp20"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp20"
+                        tools:ignore="RelativeOverlap" />
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
