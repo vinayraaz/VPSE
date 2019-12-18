@@ -11,8 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,17 +24,24 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import in.varadhismartek.Utils.Constant;
 import in.varadhismartek.patashalaerp.DashboardModule.UpdateActivity.UpdateDepartmentActivity;
+import in.varadhismartek.patashalaerp.GeneralClass.CustomSpinnerAdapter;
 import in.varadhismartek.patashalaerp.R;
 import in.varadhismartek.patashalaerp.Retrofit.APIService;
 import in.varadhismartek.patashalaerp.Retrofit.ApiUtils;
+import in.varadhismartek.patashalaerp.Retrofit.ApiUtilsPatashala;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class Fragment_AssessmentGrade extends Fragment implements View.OnClickListener {
 
@@ -42,7 +52,11 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
     String str_grade = "";
     ArrayList<AssesmentModel> arrayList;
      long str_minMarks,str_maxMarks;
-    APIService mApiService;
+    APIService mApiService,apiService;
+    String  str_toDate="", startYear = "", endYear = "", sDate = "", eDate = "",strSelectSession="",SubfromDate="";
+    ArrayList<String> sessionList, spinnerList, spinnerDateList;
+    Spinner spn_AcdamicYear;
+    Button btnSave;
     public Fragment_AssessmentGrade() {
     }
 
@@ -55,6 +69,9 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
         initViews(view);
         initListeners();
         getGradeBarriers();
+
+
+        getAcadmicAPI();
         //setRecyclerViw();
 
         return view;
@@ -62,6 +79,7 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
 
     private void initViews(View view) {
         mApiService = ApiUtils.getAPIService();
+        apiService = ApiUtilsPatashala.getService();
         iv_backBtn = view.findViewById(R.id.iv_backBtn);
 
         tv_App = view.findViewById(R.id.tv_App);
@@ -73,10 +91,14 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
 
         tv_C = view.findViewById(R.id.tv_C);
         tv_D = view.findViewById(R.id.tv_D);
-
+        spn_AcdamicYear = view.findViewById(R.id.spn_acadmic_year);
         recycler_view = view.findViewById(R.id.recycler_view);
+        btnSave = view.findViewById(R.id.button_added);
+
 
         arrayList = new ArrayList<>();
+        spinnerList = new ArrayList<>();
+        spinnerDateList = new ArrayList<>();
     }
 
     private void initListeners() {
@@ -89,6 +111,7 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
         tv_B.setOnClickListener(this);
         tv_C.setOnClickListener(this);
         tv_D.setOnClickListener(this);
+        btnSave.setOnClickListener(this);
     }
 
     private void getGradeBarriers() {
@@ -168,7 +191,41 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
         assert getActivity() != null;
 
         switch (view.getId()){
+            case R.id.button_added:
+                System.out.println("arrayList*********"+arrayList.size());
+                if (arrayList.size()>0){
 
+                    JSONObject objectGrade = new JSONObject();
+
+                    JSONObject objectOrderBy = new JSONObject();
+                    for (int i=0;i<arrayList.size();i++){
+
+
+                        JSONObject object = new JSONObject();
+
+
+                        try{
+                            object.put("grade_name",str_grade);
+                            object.put("from_mark",str_minMarks);
+                            object.put("to_mark",str_maxMarks);
+                            object.put("status","true");
+
+                            objectOrderBy.put(String.valueOf(i+1),object);
+
+                            objectGrade.put("grade",objectOrderBy);
+
+                        }catch (JSONException je){
+
+                        }
+                        Log.i("GradeData*22222",""+objectOrderBy);
+
+                    }
+                    Log.i("GradeData*222",""+objectGrade+"***"+SubfromDate);
+
+
+                }
+
+                break;
             case R.id.iv_backBtn:
                 getActivity().onBackPressed();
                 break;
@@ -241,7 +298,9 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
         TextView tv_grade = dialog.findViewById(R.id.tv_grade);
         final EditText et_fromMarks = dialog.findViewById(R.id.et_fromMarks);
         final EditText et_ToMarks = dialog.findViewById(R.id.et_ToMarks);
+
         TextView tv_add = dialog.findViewById(R.id.tv_add);
+
 
         if(!str_grade.equals(""))
             tv_grade.setText(str_grade);
@@ -303,6 +362,106 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
         });
     }
 
+    private void getAcadmicAPI() {
+        apiService.getAcademicYear(Constant.SCHOOL_ID).enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+                Log.d("SESSION**AYEAR", "onResponse: " + response.body());
+                Log.d("SESSION**AYEAR", "onResponse: " + response.code());
+
+                if (response.isSuccessful()) {
+                    try {
+                        JSONObject object = new JSONObject(new Gson().toJson(response.body()));
+                        String status = (String) object.get("status");
+
+                        if (status.equalsIgnoreCase("success")) {
+                            JSONObject jsonObject1 = object.getJSONObject("data");
+                            JSONObject jsonObject2 = jsonObject1.getJSONObject("Academic_years");
+
+                            Iterator<String> keys = jsonObject2.keys();
+                            while (keys.hasNext()) {
+                                String key = keys.next();
+                                JSONObject jsonObjectValue = jsonObject2.getJSONObject(key);
+                                String resStartDate = jsonObjectValue.getString("start_date");
+                                String resEndDate = jsonObjectValue.getString("end_date");
+
+
+                                SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+                                SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
+                                SimpleDateFormat formatterYear = new SimpleDateFormat("yyyy");
+
+                                try {
+                                    Date fromYear = formater.parse(resStartDate);
+                                    Date toYear = formater.parse(resEndDate);
+
+                                    sDate = formatterDate.format(fromYear);
+                                    eDate = formatterDate.format(toYear);
+
+                                    startYear = formatterYear.format(fromYear);
+                                    endYear = formatterYear.format(toYear);
+
+                                    String selectedDate = sDate + " - " + eDate;
+                                    String selectedYear = startYear + " - " + endYear;
+
+                                    spinnerList.add(selectedYear);
+                                    spinnerDateList.add(selectedDate);
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                            }
+                            setSpinner();
+
+
+                        }
+                    } catch (JSONException je) {
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void setSpinner() {
+        CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(getActivity(), spinnerList);
+        spn_AcdamicYear.setAdapter(adapter);
+        spn_AcdamicYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String strAcadmicYear = spn_AcdamicYear.getItemAtPosition(position).toString();
+                if (!strAcadmicYear.equalsIgnoreCase("Select Academic year")){
+                    int pos = parent.getSelectedItemPosition();
+
+
+                    strSelectSession = spinnerDateList.get(pos);
+                   String str_sessionName = spn_AcdamicYear.getSelectedItem().toString();
+                    System.out.println("str_sessionName**1**" + spinnerDateList.get(pos)+"****"+str_sessionName);
+                    //SubtoDate = strSelectSession.substring(13);
+                    SubfromDate = strSelectSession.substring(0, Math.min(strSelectSession.length(), 10));
+                    Log.d(TAG, "onResponse:getsession " + SubfromDate + "***" );
+
+                }else {
+                    Toast.makeText(getActivity(),"Select Acadmic Year",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
     private void gradeSave() {
 
         JSONObject objectOrderBy = new JSONObject();
@@ -325,7 +484,7 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
         }
         Log.i("GradeData*",""+objectGrade);
 
-        addGradeAPI(objectGrade);
+     //   addGradeAPI(objectGrade);
 
     }
 

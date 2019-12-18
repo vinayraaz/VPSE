@@ -43,178 +43,197 @@
         style="@style/Ll_normal_vtl"
         android:background="@drawable/card_design">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
 
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardElevation="@dimen/dp5"
-                app:cardCornerRadius="@dimen/dp10"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:layout_margin="@dimen/dp10">
-
-                <TextView
-                    android:id="@+id/tv_App"
-                    android:layout_width="@dimen/dp60"
-                    android:layout_height="wrap_content"
-                    android:text="@string/a_plus_plus"
-                    android:gravity="center"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/sp18"
-                    android:padding="@dimen/dp10"/>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardElevation="@dimen/dp5"
-                app:cardCornerRadius="@dimen/dp10"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:layout_margin="@dimen/dp10">
-
-                <TextView
-                    android:id="@+id/tv_Ap"
-                    android:layout_width="@dimen/dp60"
-                    android:layout_height="wrap_content"
-                    android:text="@string/a_plus"
-                    android:gravity="center"
-                    android:textSize="@dimen/sp18"
-                    android:textColor="@color/textColor"
-                    android:padding="@dimen/dp10"
-                    android:background="@color/white"/>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardElevation="@dimen/dp5"
-                app:cardCornerRadius="@dimen/dp10"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:layout_margin="@dimen/dp10">
-
-                <TextView
-                    android:id="@+id/tv_A"
-                    android:layout_width="@dimen/dp60"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:gravity="center"
-                    android:textSize="@dimen/sp18"
-                    android:textColor="@color/textColor"
-                    android:padding="@dimen/dp10"/>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardElevation="@dimen/dp5"
-                app:cardCornerRadius="@dimen/dp10"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:layout_margin="@dimen/dp10">
-
-                <TextView
-                    android:id="@+id/tv_B_plus"
-                    android:layout_width="@dimen/dp60"
-                    android:layout_height="wrap_content"
-                    android:text="@string/b_plus"
-                    android:gravity="center"
-                    android:textSize="@dimen/sp18"
-                    android:textColor="@color/textColor"
-                    android:padding="@dimen/dp10"/>
-
-            </android.support.v7.widget.CardView>
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:background="@drawable/card_design">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:elevation="@dimen/dp10">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="@dimen/dp5"
-                    app:cardCornerRadius="@dimen/dp10"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:layout_margin="@dimen/dp10">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/tv_B"
-                        android:layout_width="@dimen/dp70"
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/b"
-                        android:gravity="center"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/sp18"
-                        android:padding="@dimen/dp10"/>
+                        app:cardElevation="@dimen/dp5"
+                        app:cardCornerRadius="@dimen/dp10"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_margin="@dimen/dp10">
 
-                </android.support.v7.widget.CardView>
+                        <TextView
+                            android:id="@+id/tv_App"
+                            android:layout_width="@dimen/dp60"
+                            android:layout_height="wrap_content"
+                            android:text="@string/a_plus_plus"
+                            android:gravity="center"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/sp18"
+                            android:padding="@dimen/dp10"/>
 
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="@dimen/dp5"
+                        app:cardCornerRadius="@dimen/dp10"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_margin="@dimen/dp10">
+
+                        <TextView
+                            android:id="@+id/tv_Ap"
+                            android:layout_width="@dimen/dp60"
+                            android:layout_height="wrap_content"
+                            android:text="@string/a_plus"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp18"
+                            android:textColor="@color/textColor"
+                            android:padding="@dimen/dp10"
+                            android:background="@color/white"/>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="@dimen/dp5"
+                        app:cardCornerRadius="@dimen/dp10"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_margin="@dimen/dp10">
+
+                        <TextView
+                            android:id="@+id/tv_A"
+                            android:layout_width="@dimen/dp60"
+                            android:layout_height="wrap_content"
+                            android:text="A"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp18"
+                            android:textColor="@color/textColor"
+                            android:padding="@dimen/dp10"/>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="@dimen/dp5"
+                        app:cardCornerRadius="@dimen/dp10"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_margin="@dimen/dp10">
+
+                        <TextView
+                            android:id="@+id/tv_B_plus"
+                            android:layout_width="@dimen/dp60"
+                            android:layout_height="wrap_content"
+                            android:text="@string/b_plus"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp18"
+                            android:textColor="@color/textColor"
+                            android:padding="@dimen/dp10"/>
+
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="@dimen/dp5"
-                    app:cardCornerRadius="@dimen/dp10"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:layout_margin="@dimen/dp10">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/tv_C"
-                        android:layout_width="@dimen/dp70"
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/c"
-                        android:gravity="center"
-                        android:textSize="@dimen/sp18"
-                        android:textColor="@color/textColor"
-                        android:padding="@dimen/dp10"
-                        android:background="@color/white"/>
+                        app:cardElevation="@dimen/dp5"
+                        app:cardCornerRadius="@dimen/dp10"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_margin="@dimen/dp10">
 
-                </android.support.v7.widget.CardView>
+                        <TextView
+                            android:id="@+id/tv_B"
+                            android:layout_width="@dimen/dp70"
+                            android:layout_height="wrap_content"
+                            android:text="@string/b"
+                            android:gravity="center"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/sp18"
+                            android:padding="@dimen/dp10"/>
 
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardElevation="@dimen/dp5"
-                    app:cardCornerRadius="@dimen/dp10"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:layout_margin="@dimen/dp10">
+                    </android.support.v7.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/tv_D"
-                        android:layout_width="@dimen/dp70"
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/d"
-                        android:gravity="center"
-                        android:textSize="@dimen/sp18"
-                        android:textColor="@color/textColor"
-                        android:padding="@dimen/dp10"/>
+                        app:cardElevation="@dimen/dp5"
+                        app:cardCornerRadius="@dimen/dp10"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_margin="@dimen/dp10">
 
-                </android.support.v7.widget.CardView>
+                        <TextView
+                            android:id="@+id/tv_C"
+                            android:layout_width="@dimen/dp70"
+                            android:layout_height="wrap_content"
+                            android:text="@string/c"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp18"
+                            android:textColor="@color/textColor"
+                            android:padding="@dimen/dp10"
+                            android:background="@color/white"/>
 
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="@dimen/dp5"
+                        app:cardCornerRadius="@dimen/dp10"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_margin="@dimen/dp10">
+
+                        <TextView
+                            android:id="@+id/tv_D"
+                            android:layout_width="@dimen/dp70"
+                            android:layout_height="wrap_content"
+                            android:text="@string/d"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp18"
+                            android:textColor="@color/textColor"
+                            android:padding="@dimen/dp10"/>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="@dimen/dp200"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinnerbackground"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/dp10">
+                <Spinner
+                    android:id="@+id/spn_acadmic_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/dp40"/>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -259,9 +278,27 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="match_parent"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
 
+                    android:background="@color/white">
+                    <Button
+                        android:id="@+id/button_added"
+                        android:layout_width="@dimen/dp120"
+                        style="@style/button_normal"
+                        android:layout_gravity="center"
+                        android:background="@drawable/add_back"
+                        android:text="@string/save"
+                        android:textSize="@dimen/sp17"
+                        android:visibility="visible"
+                        android:layout_marginBottom="@dimen/dp5"
+                        android:layout_marginTop="@dimen/dp10"/>
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
