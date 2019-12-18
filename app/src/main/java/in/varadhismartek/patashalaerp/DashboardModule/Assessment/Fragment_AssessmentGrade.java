@@ -222,7 +222,7 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
                     }
                     Log.i("GradeData*222",""+objectGrade+"***"+SubfromDate);
 
-
+                    addGradeAPI(objectOrderBy,SubfromDate);
                 }
 
                 break;
@@ -488,8 +488,8 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
 
     }
 
-    private void addGradeAPI(JSONObject objectGrade) {
-        mApiService.addGradeBarrier(Constant.SCHOOL_ID,objectGrade,Constant.EMPLOYEE_BY_ID)
+    private void addGradeAPI(JSONObject objectGrade, String subfromDate) {
+        mApiService.addGradeBarrier(Constant.SCHOOL_ID,objectGrade,Constant.EMPLOYEE_BY_ID,subfromDate)
                 .enqueue(new Callback<Object>() {
                     @Override
                     public void onResponse(Call<Object> call, Response<Object> response) {

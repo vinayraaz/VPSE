@@ -355,7 +355,8 @@ public interface APIService {
     Call<Object> addGradeBarrier(
             @Field("school_id") String school_id,
             @Field("grade_data") JSONObject grade_data,
-            @Field("employee_uuid") String employee_uuid
+            @Field("employee_uuid") String employee_uuid,
+            @Field("academic_start_date") String academic_start_date
     );
 
 
