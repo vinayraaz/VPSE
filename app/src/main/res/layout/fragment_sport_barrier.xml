@@ -67,15 +67,17 @@
 
                 <Spinner
                     android:id="@+id/spSport"
-                    style="@style/spinner_weight"
+                    style="@style/spinner_weight1"
+                    android:layout_weight=".6"
                     android:layout_margin="@dimen/dp5" />
 
                 <EditText
                     android:id="@+id/ed_playerteam"
-                    android:layout_width="@dimen/pin_min_width"
+                    android:layout_width="0dp"
                     android:layout_height="@dimen/dp35"
                     android:layout_gravity="center_vertical"
                     android:layout_weight=".4"
+                    android:layout_marginRight="@dimen/dp5"
                     android:background="@drawable/spinnerbackground_two"
                     android:hint="Player per team *"
                     android:inputType="number"

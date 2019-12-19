@@ -488,11 +488,14 @@ public class Fragment_AssessmentGrade extends Fragment implements View.OnClickLi
 
     }
 
-    private void addGradeAPI(JSONObject objectGrade, String subfromDate) {
+    private void addGradeAPI(JSONObject objectGrade, final String subfromDate) {
+
         mApiService.addGradeBarrier(Constant.SCHOOL_ID,objectGrade,Constant.EMPLOYEE_BY_ID,subfromDate)
                 .enqueue(new Callback<Object>() {
                     @Override
                     public void onResponse(Call<Object> call, Response<Object> response) {
+                        Log.i("Grade_Response",""+subfromDate+"***"+response.raw().request().url()+"**"+Constant.EMPLOYEE_BY_ID+"**"+Constant.SCHOOL_ID);
+                        Log.i("Grade_Response899999**",""+response.body());
                         if (response.isSuccessful()){
 
                             try {

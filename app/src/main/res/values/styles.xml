@@ -749,6 +749,11 @@
 
     </style>
 
+    <style name="spinner_weight1" parent="spinner_normal">
+        <item name="android:layout_width">@dimen/dp0</item>
+
+    </style>
+
 
     <style name="spinner_weight_mrgn_pad" parent="margin_padding">
         <item name="android:layout_width">@dimen/dp0</item>

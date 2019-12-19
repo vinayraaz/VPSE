@@ -309,6 +309,14 @@ public class Fragment_SportBarrier extends Fragment implements View.OnClickListe
 
                         Log.i("ADD_SPORTBARRIER**", "" + response.body());
                         Log.i("ADD_SPORTBARRIER**", "" + response.code());
+                        if(response.isSuccessful()){
+                            Toast.makeText(getActivity(),"Added successfully",Toast.LENGTH_SHORT).show();
+                            spinnerSport.setSelection(0);
+                            edplayerTeam.setText("");
+                            edMentor.setText("");
+                            edRoleName.setText("");
+                            edSupportPlayer.setText("");
+                        }
                         getSportBarrierAPI();
 
                     }

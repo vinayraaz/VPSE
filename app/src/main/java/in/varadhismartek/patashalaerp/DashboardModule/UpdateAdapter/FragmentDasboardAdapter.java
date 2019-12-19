@@ -44,22 +44,13 @@ public class FragmentDasboardAdapter extends RecyclerView.Adapter<FragmentDasboa
 
                 String menuName= holder.tvModuleName.getText().toString();
 
-                if (menuName.equalsIgnoreCase("Homework")){
-                  /*  Intent intent = new Intent(context, HomeWorkActivity.class);
-                    intent.putExtra("MENU_TYPE",menuName);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                if (menuName.equalsIgnoreCase("Homework")) {
                     Intent intent = new Intent(context, DashBoardMenuActivity.class);
-                    intent.putExtra("Fragment_Type","HomeWorkInbox");
-                    context.startActivity(intent);
-                    ((Activity)context).finish();
-                    context.startActivity(intent);
-                }/*   if (menuName.equalsIgnoreCase("Homework")){
-                    Intent intent = new Intent(context, HomeWorkActivity.class);
-                    intent.putExtra("MENU_TYPE",menuName);
+                    intent.putExtra("Fragment_Type", "HomeWorkInbox");
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-                }*/
-
+                    //((Activity)context).finish();
+                }
                 else if (menuName.equalsIgnoreCase("Gallery")){
                     Intent intent = new Intent(context, GalleryActivity.class);
                     context.startActivity(intent);
@@ -77,7 +68,7 @@ public class FragmentDasboardAdapter extends RecyclerView.Adapter<FragmentDasboa
                     Intent intent = new Intent(context, DashBoardMenuActivity.class);
                     intent.putExtra("Fragment_Type","Subject");
                     context.startActivity(intent);
-                    ((Activity)context).finish();
+
                 }
 
             }

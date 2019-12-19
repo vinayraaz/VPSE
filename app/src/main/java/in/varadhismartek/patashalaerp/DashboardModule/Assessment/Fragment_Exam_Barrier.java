@@ -68,8 +68,8 @@ public class Fragment_Exam_Barrier extends Fragment implements View.OnClickListe
         initListener();
         getExamType();
         getDivisionApi();
-        getSubject();
-        // getExamBarrierApi();
+
+
 
         return view;
     }
@@ -371,6 +371,11 @@ public class Fragment_Exam_Barrier extends Fragment implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 str_class = adapterView.getSelectedItem().toString();
+                if (strDiv.equalsIgnoreCase("Select Division") && (str_class.equalsIgnoreCase("Select Class"))){
+
+                }else {
+                    getSubjectAPI(strDiv,str_class);
+                }
                 /*if (i == 0) {
                     str_class = "";
 
@@ -389,13 +394,78 @@ public class Fragment_Exam_Barrier extends Fragment implements View.OnClickListe
         });
     }
 
-    private void getSubject() {
-        listSubject.clear();
-        listSubject.add("Select Subject");
-        String arr[] = getActivity().getResources().getStringArray(R.array.sub_array);
-        for (String anArr : arr) {
-            listSubject.add(anArr);
-        }
+    private void getSubjectAPI(String strDiv, String str_class) {
+
+        apiService.getSubject(Constant.SCHOOL_ID, strDiv, str_class).enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+
+                listSubject = new ArrayList<>();
+
+                if (response.isSuccessful()) {
+                    try {
+
+                        listSubject.clear();
+                        JSONObject object = new JSONObject(new Gson().toJson(response.body()));
+                        String status = (String) object.get("status");
+                        Log.i("SubjectList***D", "" + response.code() + "**" + status);
+                        if (status.equalsIgnoreCase("Success")) {
+
+
+                            JSONObject jsonObject1 = object.getJSONObject("Section");
+
+                            Iterator<String> keys = jsonObject1.keys();
+
+                            while (keys.hasNext()) {
+                                String sectionkey = keys.next();
+                                JSONObject jsonSection = jsonObject1.getJSONObject(sectionkey);
+                                Iterator<String> keys2 = jsonSection.keys();
+
+                                while (keys2.hasNext()) {
+                                    String subjectkey = keys2.next();
+                                    JSONObject jsonSubject = jsonSection.getJSONObject(subjectkey);
+
+                                    String strType = jsonSubject.getString("subject_type");
+                                    String strCode = jsonSubject.getString("subject_code");
+                                    boolean strStatus = jsonSubject.getBoolean("status");
+
+                                    Log.i("SubjectList***E", "" + response.code() + "**" + status + "***" + subjectkey);
+                                    listSubject.add(subjectkey);
+
+
+                                }
+                                CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(getActivity(), listSubject);
+                                spSubject.setAdapter(customSpinnerAdapter);
+                                // setRecyclerView();
+                            }
+                        } else {
+                            listSubject.clear();
+                            listSubject.add(0, "Select Subject");
+                            CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(getActivity(), listSubject);
+                            spSubject.setAdapter(customSpinnerAdapter);
+                        }
+
+                    } catch (JSONException je) {
+
+                    }
+                } else {
+
+                    Log.i("SubjectList***F", "" + response.code());
+                    listSubject.clear();
+                    listSubject.add(0, "Select Subject");
+                    CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(getActivity(), listSubject);
+                    spSubject.setAdapter(customSpinnerAdapter);
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Log.i("SubjectList***B", "" + t.getMessage());
+
+            }
+        });
         CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(getActivity(), listSubject);
         spSubject.setAdapter(customSpinnerAdapter);
 
@@ -477,8 +547,18 @@ public class Fragment_Exam_Barrier extends Fragment implements View.OnClickListe
                 strMax, strDuration, Constant.EMPLOYEE_BY_ID).enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
-                Log.i("ADDEXAMBARRIER**", "" + response.body());
-                Log.i("ADDEXAMBARRIER**", "" + response.code());
+
+                if(response.isSuccessful()){
+
+                    Toast.makeText(getActivity(),"Added successfully", LENGTH_SHORT).show();
+                    spExamType.setSelection(0);
+                    spDivision.setSelection(0);
+                    spClass.setSelection(0);
+                    spSubject.setSelection(0);
+                    edMinMarks.setText("");
+                    edMaxMark.setText("");
+                    edExamDuration.setText("");
+                }
                 getExamBarrierApi();
 
             }
