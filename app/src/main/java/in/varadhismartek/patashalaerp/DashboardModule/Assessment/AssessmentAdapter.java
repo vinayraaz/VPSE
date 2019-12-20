@@ -160,17 +160,19 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentViewHolder
     public void onBindViewHolder(@NonNull final AssessmentViewHolder holder, final int i) {
         switch (recyclerTag) {
             case Constant.RV_ASSESSMENT_SPORTS_BARRIER:
+                if (arrayListSport.size() > 0) {
+                    holder.tvSportName.setText(arrayListSport.get(i).getSportName());
+                    int num = 0, num2 = 0, num3 = 0;
 
-                holder.tvSportName.setText(arrayListSport.get(i).getSportName());
-                int num = (int) Double.parseDouble(arrayListSport.get(i).getMaxPlayers());
-                int num2 = (int) Double.parseDouble(arrayListSport.get(i).getMentors());
-                int num3 = (int) Double.parseDouble(arrayListSport.get(i).getSupportPlayers());
+                    num = (int) Double.parseDouble(arrayListSport.get(i).getMaxPlayers());
+                    num2 = (int) Double.parseDouble(arrayListSport.get(i).getMentors());
+                    num3 = (int) Double.parseDouble(arrayListSport.get(i).getSupportPlayers());
 
-                holder.tvMaxPlayer.setText("Max Player : "+String.valueOf(num));
-                holder.tvMentorNo.setText("No of Mentor : "+String.valueOf(num2));
-                holder.tvSupportPlayer.setText("Support Players : "+String.valueOf(num3));
-                holder.tvRoleName.setText("Judge\nRole Name : "+arrayListSport.get(i).getMentorPosition_name());
-
+                    holder.tvMaxPlayer.setText("Max Player : " + String.valueOf(num));
+                    holder.tvMentorNo.setText("No of Mentor : " + String.valueOf(num2));
+                    holder.tvSupportPlayer.setText("Support Players : " + String.valueOf(num3));
+                    holder.tvRoleName.setText("Judge\nRole Name : " + arrayListSport.get(i).getMentorPosition_name());
+                }
                 break;
 
             case Constant.RV_ASSESSMENT_SPORTS_ROW:

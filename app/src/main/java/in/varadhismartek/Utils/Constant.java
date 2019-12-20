@@ -131,6 +131,7 @@ public class Constant {
     public static final String RV_ASSESSMENT_SPORTS_ROW = "RV_ASSESSMENT_SPORTS_ROW";
     public static final String RV_ASSESSMENT_SPORTS_BARRIER = "RV_ASSESSMENT_SPORTS_BARRIER";
     public static final String RV_ADD_HOUSES = "RV_ADD_HOUSES";
+    public static final String RV_FEES_ROW = "RV_FEES_ROW";
 
     public static ArrayList<String> listDivisionNew;
 

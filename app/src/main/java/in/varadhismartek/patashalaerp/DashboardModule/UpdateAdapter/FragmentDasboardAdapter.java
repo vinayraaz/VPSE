@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import in.varadhismartek.patashalaerp.DashboardModule.Assessment.AssessmentModuleActivity;
 import in.varadhismartek.patashalaerp.DashboardModule.DashBoardMenuActivity;
+import in.varadhismartek.patashalaerp.DashboardModule.FeesModule.FeesActivity;
 import in.varadhismartek.patashalaerp.Gallery.GalleryActivity;
 import in.varadhismartek.patashalaerp.R;
 
@@ -53,6 +54,12 @@ public class FragmentDasboardAdapter extends RecyclerView.Adapter<FragmentDasboa
                 }
                 else if (menuName.equalsIgnoreCase("Gallery")){
                     Intent intent = new Intent(context, GalleryActivity.class);
+                    context.startActivity(intent);
+                    ((Activity)context).finish();
+                }
+                else if (menuName.equalsIgnoreCase("Fees")){
+                    Intent intent = new Intent(context, FeesActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                     ((Activity)context).finish();
                 }

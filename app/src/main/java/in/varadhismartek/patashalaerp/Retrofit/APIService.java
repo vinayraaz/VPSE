@@ -791,6 +791,21 @@ public interface APIService {
             @Part("question_bank_attachement") RequestBody questionBankImage
 
     );
+// fees
+    @FormUrlEncoded
+    @POST("create_fee_structure")
+    Call<Object>createFeeStructure(
+            @Field("school_id") String  school_id,
+            @Field("added_employeeid") String added_employeeid,
+            @Field("academic_start_date") String academic_start_date,
+            @Field("data") JSONObject feeData
+    );
 
+    @FormUrlEncoded
+    @POST("get-status-fee-structure")
+    Call<Object>getFeeStructure(
+            @Field("school_id") String  school_id,
+            @Field("academic_start_date") String academic_start_date
+    );
 
 }

@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".DashboardModule.DashBoardMenuActivity"></activity>
+        <activity android:name=".DashboardModule.FeesModule.FeesActivity"></activity>
+        <activity android:name=".DashboardModule.DashBoardMenuActivity" />
         <activity android:name=".TeacherModule.TeacherModuleActivity" />
         <activity android:name=".StudentModule.StudentModuleActivity" />
         <activity android:name=".DashboardModule.Assessment.ExamActivity" />
@@ -86,6 +87,7 @@
         <activity
             android:name=".Gallery.GalleryActivity"
             android:theme="@style/AppTheme_green" />
+
     </application>
 
 </manifest>

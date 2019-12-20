@@ -166,34 +166,34 @@ public class Fragment_SportBarrier extends Fragment implements View.OnClickListe
                                 Log.i("sportsStatus**12", "" + sportsStatus);
 
                                 if (jsonObjectValue.isNull("mentors")) {
-                                    mentors = "No data";
+                                    mentors = "0";
                                 } else {
                                     mentors = jsonObjectValue.getString("mentors");
                                 }
 
                                 if (jsonObjectValue.isNull("mentor_position_name")) {
-                                    mentor_position_name = "No data";
+                                    mentor_position_name = "0";
                                 } else {
                                     mentor_position_name = jsonObjectValue.getString("mentor_position_name");
                                 }
 
 
                                 if (jsonObjectValue.isNull("max_players")) {
-                                    max_players = "No data";
+                                    max_players = "0";
                                 } else {
                                     max_players = jsonObjectValue.getString("max_players");
                                 }
 
 
                                 if (jsonObjectValue.isNull("support_players")) {
-                                    support_players = "No data";
+                                    support_players = "0";
                                 } else {
                                     support_players = jsonObjectValue.getString("support_players");
                                 }
 
 
                                 if (jsonObjectValue.isNull("sport_name")) {
-                                    sport_name = "No data";
+                                    sport_name = "0";
                                 } else {
                                     sport_name = jsonObjectValue.getString("sport_name");
 
@@ -226,7 +226,7 @@ public class Fragment_SportBarrier extends Fragment implements View.OnClickListe
 
     private void setRecyclerView() {
 
-        Log.i("arrayListSport**12", "" + arrayListSport);
+        Log.i("arrayListSport**12", "" + arrayListSport.size());
 
         AssessmentAdapter adapter = new AssessmentAdapter(getActivity(), arrayListSport, Constant.RV_ASSESSMENT_SPORTS_BARRIER);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

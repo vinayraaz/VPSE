@@ -69,9 +69,72 @@ public class Fragment_Exam_Barrier extends Fragment implements View.OnClickListe
         getExamType();
         getDivisionApi();
 
+       // getGrade();
+
 
 
         return view;
+    }
+
+    private void getGrade() {
+        apiService.getExamBarriers(Constant.SCHOOL_ID, "Unit Test", "Division1", "Class 1").
+                enqueue(new Callback<Object>() {
+                    @Override
+                    public void onResponse(Call<Object> call, Response<Object> response) {
+                        Log.i("Get_examBarrier**New", "" + response.body());
+                        Log.i("Get_examBarrier**New", "" + response.code());
+
+                        if (response.isSuccessful()) {
+                            try {
+
+                                JSONObject object = new JSONObject(new Gson().toJson(response.body()));
+                                String status = (String) object.get("status");
+
+                                if (status.equalsIgnoreCase("Sucess")) {
+                                    JSONObject jsonObject1 = object.getJSONObject("data");
+                                    if (object.getJSONObject("data").toString().equals("{}")) {
+                                        Toast.makeText(getActivity(), "Data not exist", LENGTH_SHORT).show();
+
+                                    } else {
+
+                                        Iterator<String> keys = jsonObject1.keys();
+
+                                        while (keys.hasNext()) {
+                                            String key = keys.next();
+                                            JSONObject jsonObjectValue = jsonObject1.getJSONObject(key);
+                                            Log.d("jsonSliderValue", jsonObjectValue.toString());
+
+                                            boolean gradeStatus = jsonObjectValue.getBoolean("status");
+
+                                            if (gradeStatus) {
+
+                                                StrSubject = key;
+                                                StrDuration = jsonObjectValue.getString("exam_duration");
+                                                longMin = jsonObjectValue.getLong("min_marks");
+                                                longmax = jsonObjectValue.getLong("max_marks");
+
+                                                assesmentModels.add(new AssesmentModel(longMin, longmax, strExamType,
+                                                        strDiv, str_class, strSubject, StrDuration));
+
+                                            }
+
+                                        }
+                                        setRecyclerView();
+
+
+                                    }
+                                }
+                            } catch (JSONException je) {
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Object> call, Throwable t) {
+
+                    }
+                });
     }
 
 
@@ -271,7 +334,7 @@ public class Fragment_Exam_Barrier extends Fragment implements View.OnClickListe
                             if (object.getJSONObject("data").toString().equals("{}")) {
                                 //  modelArrayList.clear();
                                 // customSpinnerAdapter.notifyDataSetChanged();
-                                setSpinnerForClass();
+                              //  setSpinnerForClass();
 
                             } else {
 
@@ -559,7 +622,7 @@ public class Fragment_Exam_Barrier extends Fragment implements View.OnClickListe
                     edMaxMark.setText("");
                     edExamDuration.setText("");
                 }
-                getExamBarrierApi();
+               // getExamBarrierApi();
 
             }
 
@@ -572,12 +635,13 @@ public class Fragment_Exam_Barrier extends Fragment implements View.OnClickListe
     }
 
     private void getExamBarrierApi() {
+        System.out.println("aaaaa"+strExamType+"***"+ strDiv+"***"+str_class);
         assesmentModels.clear();
-        apiService.getExamBarriers(Constant.SCHOOL_ID, strExamType, strDiv, str_class).
+        apiService.getExamBarriers(Constant.SCHOOL_ID, "Unit Test", "Division1", "Class 1").
                 enqueue(new Callback<Object>() {
                     @Override
                     public void onResponse(Call<Object> call, Response<Object> response) {
-                        Log.i("Get_examBarrier**", "" + response.body());
+                        Log.i("Get_examBarrier**AAA", "" + response.body());
                         Log.i("Get_examBarrier**", "" + response.code());
 
                         if (response.isSuccessful()) {
