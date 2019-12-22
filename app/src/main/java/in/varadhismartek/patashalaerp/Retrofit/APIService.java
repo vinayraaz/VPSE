@@ -808,4 +808,21 @@ public interface APIService {
             @Field("academic_start_date") String academic_start_date
     );
 
+    @FormUrlEncoded
+    @POST("update_fee_structure")
+    Call<Object>updateFeeStructure(
+            @Field("school_id") String  school_id,
+            @Field("academic_start_date") String academic_start_date,
+            @Field("added_employeeid") String added_employeeid,
+            @Field("new_status") String new_status,
+            @Field("session_serial_no") String session_serial_no,
+            @Field("old_fee_type") String old_fee_type,
+            @Field("new_fee_type") String new_fee_type,
+            @Field("new_installment") String new_installment,
+            @Field("new_due_date") String new_due_date,
+            @Field("new_fee_code") String new_fee_code
+    );
+
+
+
 }

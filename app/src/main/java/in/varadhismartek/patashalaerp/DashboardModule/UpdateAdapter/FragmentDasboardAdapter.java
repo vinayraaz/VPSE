@@ -48,28 +48,28 @@ public class FragmentDasboardAdapter extends RecyclerView.Adapter<FragmentDasboa
                 if (menuName.equalsIgnoreCase("Homework")) {
                     Intent intent = new Intent(context, DashBoardMenuActivity.class);
                     intent.putExtra("Fragment_Type", "HomeWorkInbox");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                   // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                     //((Activity)context).finish();
                 }
                 else if (menuName.equalsIgnoreCase("Gallery")){
                     Intent intent = new Intent(context, GalleryActivity.class);
                     context.startActivity(intent);
-                    ((Activity)context).finish();
+                    //((Activity)context).finish();
                 }
                 else if (menuName.equalsIgnoreCase("Fees")){
                     Intent intent = new Intent(context, FeesActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-                    ((Activity)context).finish();
+                   // ((Activity)context).finish();
                 }
 
 
                 /*final */
-                else if (menuName.equalsIgnoreCase("Assesment")){
+                else if (menuName.equalsIgnoreCase("Assessment")){
                     Intent intent = new Intent(context, AssessmentModuleActivity.class);
                     context.startActivity(intent);
-                    ((Activity)context).finish();
+                   // ((Activity)context).finish();
                 }
                 else if (menuName.equalsIgnoreCase("Add Subject")){
                     Intent intent = new Intent(context, DashBoardMenuActivity.class);

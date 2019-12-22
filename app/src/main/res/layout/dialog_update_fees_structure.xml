@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/dp0"
+    android:background="@drawable/rounded_button_white"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Fees Structure"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/ic_popup_green"
+        android:padding="@dimen/dp10"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dp30"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:text="Fees Type "/>
+            <EditText
+                android:id="@+id/et_fee_type"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:background="@drawable/spinnerbackground_two"
+                android:hint="enter fee type"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dp30"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp5"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:text="Fees Code "/>
+            <EditText
+                android:id="@+id/et_fee_code"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:background="@drawable/spinnerbackground_two"
+                android:hint="enter fees code"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dp30"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp5"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:text="Installment "/>
+            <EditText
+                android:id="@+id/et_installment"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:background="@drawable/spinnerbackground_two"
+                android:hint="enter installment"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/dp30"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp5"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:text="Due Date "/>
+            <TextView
+                android:id="@+id/tv_due_date"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:drawableRight="@drawable/ic_date_range_black_24dp"
+                android:drawableTint="@color/green"
+                android:background="@drawable/spinnerbackground_two"
+                android:hint="enter due date"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_cancel"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="@dimen/dp30"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:background="@color/red"/>
+
+        <Button
+            android:id="@+id/bt_update"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30"
+            android:layout_weight="1"
+            android:text="Update"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:background="@color/barrier_green_colorPrimaryDark"/>
+
+    </LinearLayout>
+
+</LinearLayout>
