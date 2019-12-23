@@ -41,6 +41,7 @@ public class Constant {
     public static final String CHECKER_ADAPTER = "CHECKER_ADAPTER";
     public static final String MAKER_ADAPTER = "MAKER_ADAPTER";
     public static final String BARRIERS_FRAG = "BARRIERS_FRAG";
+
     public static final String SELECTED_FRAG = "SELECTED_FRAG";
     public static final String STATUS = "status";
     public static final String DEPARTMENT_FRAG = "DEPARTMENT_FRAG";
@@ -99,6 +100,9 @@ public class Constant {
     public static final String RV_SESSION_ROW_NEW = "RV_SESSION_ROW_NEW";
 
     public static String ACTIVE_PAGE = "0";
+    public static String ACADEMIC_YEAR = "ACADEMIC_YEAR";
+    public static Integer FEE_LIST_SIZE = 0;
+
 
     /*Homework*/
     public static final String HOMEWORK_HOME_FRAGMENT = "HOMEWORK_HOME_FRAGMENT";

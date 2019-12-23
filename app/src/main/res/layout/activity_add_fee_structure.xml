@@ -3,20 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
     android:layout_margin="@dimen/dp0"
     android:background="@drawable/rounded_button_white"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/ic_popup_green"
-        android:padding="@dimen/dp10"
-        android:text="Update Fees Structure"
-        android:textColor="@color/white" />
+
+    <android.support.v7.widget.Toolbar style="@style/Toolbar"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageView
+            android:id="@+id/iv_backBtn"
+            style="@style/imgvw_normal"
+            android:layout_gravity="start"
+            android:contentDescription="@string/backgroung"
+            android:src="@drawable/ic_arrow_back_white_24dp" />
+
+
+        <TextView
+            style="@style/tv_normal"
+            android:layout_gravity="center"
+            android:text="Fee Structure"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp19" />
+
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -158,27 +169,21 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/dp20"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/bt_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp30"
-            android:layout_weight="1"
-            android:background="@color/red"
-            android:text="Cancel"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
+
 
         <Button
             android:id="@+id/bt_update"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/dp120"
             android:layout_height="@dimen/dp30"
             android:layout_weight="1"
-            android:background="@color/barrier_green_colorPrimaryDark"
-            android:text="Update"
+            android:background="@drawable/btn_round_shape_green"
+            android:text="Add"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
