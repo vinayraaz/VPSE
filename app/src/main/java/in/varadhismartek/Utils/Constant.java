@@ -162,6 +162,8 @@ public class Constant {
     public static final String QUESTIONBANK__CREATE = "QUESTIONBANK__CREATE";
     public static final String RV_QUESTION_BANK_ROW = "RV_QUESTION_BANK_ROW";
     public static final String RV_SUBJECT_ROW_CLASS = "RV_SUBJECT_ROW_CLASS";
+    public static final String RV_EMPLOYEE_LIST = "RV_EMPLOYEE_LIST";
+    public static final String EMPLOYEE_VIEW_FRAGMENT = "EMPLOYEE_VIEW_FRAGMENT";
 
 
 }

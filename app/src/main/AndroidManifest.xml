@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".DashboardModule.FeesModule.AddFeeStructure"></activity>
+        <activity android:name=".Staff.EmployeeModule"></activity>
+        <activity android:name=".Staff.EmployeeActivity" />
+        <activity android:name=".DashboardModule.FeesModule.AddFeeStructure" />
         <activity android:name=".DashboardModule.FeesModule.FeesActivity" />
         <activity android:name=".DashboardModule.DashBoardMenuActivity" />
         <activity android:name=".TeacherModule.TeacherModuleActivity" />

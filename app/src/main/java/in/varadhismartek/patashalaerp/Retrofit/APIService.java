@@ -824,5 +824,20 @@ public interface APIService {
     );
 
 
+    // emp list
+    @FormUrlEncoded
+    @POST("get_school_all_employee_lists")
+    Call<Object> getAllEmployeeList(
+            @Field("school_id") String school_id
+    );
+
+    @FormUrlEncoded
+    @POST("getting_employee_personal_details")
+    Call<Object> getEmpPersonalData(
+            @Field("school_id") String school_id,
+            @Field("first_name") String first_name,
+            @Field("last_name") String last_name,
+            @Field("adhaar_card_no") String adhaar_card_no
+    );
 
 }
