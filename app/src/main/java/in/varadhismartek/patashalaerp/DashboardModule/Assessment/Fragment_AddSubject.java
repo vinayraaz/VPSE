@@ -514,6 +514,8 @@ tvSection.setText(sectionkey);
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
+
             case R.id.tvAdd:
                 editvalue = edSubName.getText().toString();
                 if (edSubName.getText().toString().isEmpty() || edSubCode.getText().toString().isEmpty()

@@ -43,14 +43,15 @@ public class AddFeeStructure extends AppCompatActivity implements View.OnClickLi
     EditText edFeeType, edFeeCode, edInstallment;
     TextView edFeeDueDate;
     Spinner spn_academicyear;
-    Button btnAdd;
-    APIService apiService,mApiService;
+    Button btnAdd, bt_reminder;
+    APIService apiService, mApiService;
 
-    String  str_toDate="", startYear = "", endYear = "", sDate = "", eDate = "",strSelectSession="",SubfromDate="";
-    ArrayList<String> spinnerList= new ArrayList<>();
-    ArrayList<String>spinnerDateList= new ArrayList<>();
+    String str_toDate = "", startYear = "", endYear = "", sDate = "", eDate = "", strSelectSession = "", SubfromDate = "";
+    ArrayList<String> spinnerList = new ArrayList<>();
+    ArrayList<String> spinnerDateList = new ArrayList<>();
 
     private int year, month, date;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +66,11 @@ public class AddFeeStructure extends AppCompatActivity implements View.OnClickLi
         edFeeDueDate = findViewById(R.id.tv_due_date);
 
         btnAdd = findViewById(R.id.bt_update);
+        bt_reminder = findViewById(R.id.bt_reminder);
         spn_academicyear = findViewById(R.id.spn_acadmicyear);
         edFeeDueDate.setOnClickListener(this);
         btnAdd.setOnClickListener(this);
+        bt_reminder.setOnClickListener(this);
         getAcadmicAPI();
     }
 
@@ -145,18 +148,18 @@ public class AddFeeStructure extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String strAcadmicYear = spn_academicyear.getItemAtPosition(position).toString();
-                if (!strAcadmicYear.equalsIgnoreCase("Select Academic year")){
+                if (!strAcadmicYear.equalsIgnoreCase("Select Academic year")) {
                     int pos = parent.getSelectedItemPosition();
 
 
                     strSelectSession = spinnerDateList.get(pos);
                     String str_sessionName = spn_academicyear.getSelectedItem().toString();
-                    System.out.println("str_sessionName**1**" + spinnerDateList.get(pos)+"****"+str_sessionName);
+                    System.out.println("str_sessionName**1**" + spinnerDateList.get(pos) + "****" + str_sessionName);
                     //SubtoDate = strSelectSession.substring(13);
 
                     SubfromDate = strSelectSession.substring(0, Math.min(strSelectSession.length(), 10));
-                    Constant.ACADEMIC_YEAR =SubfromDate;
-                    Log.d(TAG, "onResponse:getsession " + SubfromDate + "***" );
+                    Constant.ACADEMIC_YEAR = SubfromDate;
+                    Log.d(TAG, "onResponse:getsession " + SubfromDate + "***");
 
                 }
             }
@@ -171,9 +174,12 @@ public class AddFeeStructure extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_due_date:
                 dateDialog();
+                break;
+            case R.id.bt_reminder:
+                addReminder();
                 break;
             case R.id.bt_update:
                 Constant.FEE_LIST_SIZE++;
@@ -182,7 +188,7 @@ public class AddFeeStructure extends AppCompatActivity implements View.OnClickLi
                 int i = 0;
 
                 try {
-                    object.put("session_serial_no",  String.valueOf(Constant.FEE_LIST_SIZE++));
+                    object.put("session_serial_no", String.valueOf(Constant.FEE_LIST_SIZE++));
                     object.put("fee_type", edFeeType.getText().toString());
                     object.put("installment", edInstallment.getText().toString());
                     object.put("due_date", edFeeDueDate.getText().toString());
@@ -199,11 +205,99 @@ public class AddFeeStructure extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
+
+    private void addReminder() {
+        /*
+        reminder:{'1':{'reminder_no':'1','no_of_days':'2','from_time':'1:55 pm','to_time':'2:55 pm','
+        reminder_text':'hey hello how are you had dinner'}}*/
+        JSONObject jsonObject = new JSONObject();
+        int i = 0;
+        try {
+            JSONObject object = new JSONObject();
+            object.put("reminder_no", "1");
+            object.put("no_of_days", "2");
+            object.put("from_time", "10:30 AM");
+            object.put("to_time", "3:30 PM");
+            object.put("reminder_text", "hey hello how are you had dinner");
+
+            jsonObject.put(String.valueOf(i + 1), object);
+        } catch (JSONException je) {
+
+        }
+
+
+        apiService.addReminer(Constant.SCHOOL_ID, Constant.EMPLOYEE_BY_ID, "2019-12-22",
+                "1", "Examy", jsonObject).enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+                Log.i("response_reminder", "1" + response.body() + "**" + response.code());
+                if (response.isSuccessful()) {
+                    Log.i("response_reminder", "" + response.body() + "**" + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+
+            }
+        });
+
+        apiService.getReminer(Constant.SCHOOL_ID).enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+                if (response.isSuccessful()){
+
+                    try {
+                        JSONObject object = new JSONObject(new Gson().toJson(response.body()));
+                        String status = (String) object.get("status");
+
+                        if (status.equalsIgnoreCase("success")) {
+                            JSONObject jsonObject1 = object.getJSONObject("data");
+
+                            Iterator<String> keys = jsonObject1.keys();
+                            while (keys.hasNext()) {
+                                String key = keys.next();
+                                JSONObject jsonObjectValue = jsonObject1.getJSONObject(key);
+
+                                String added_employee,reminder_no,fee_type,added_employeeid,
+                                        reminderStatus ,from_time,reminder_text,to_time,number_of_days;;
+
+                                 added_employee = jsonObjectValue.getString("added_employee_lasst_name");
+                                 reminder_no = jsonObjectValue.getString("reminder_no");
+                                 fee_type = jsonObjectValue.getString("fee_type");
+                                 added_employeeid = jsonObjectValue.getString("added_employeeid");
+                                 reminderStatus = jsonObjectValue.getString("status");
+                                 from_time = jsonObjectValue.getString("from_time");
+                                 reminder_text = jsonObjectValue.getString("reminder_text");
+                                to_time = jsonObjectValue.getString("to_time");
+                                 number_of_days = jsonObjectValue.getString("number_of_days");
+
+
+
+
+                            }
+                        }
+                    }catch (JSONException je){
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+
+            }
+        });
+
+    }
+
     private void dateDialog() {
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                Calendar calendar;;
+                Calendar calendar;
+                ;
                 calendar = Calendar.getInstance();
                 calendar.set(Calendar.YEAR, i);
                 calendar.set(Calendar.MONTH, i1);

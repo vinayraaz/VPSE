@@ -497,6 +497,29 @@ public interface APIService {
 
     );
 
+    @FormUrlEncoded
+    @POST("add_reminder")
+    Call<Object> addReminer(
+            @Field("school_id") String school_id,
+            @Field("added_employeeid") String division,
+            @Field("academic_start_date") String classType,
+            @Field("session_serial_no") String session_serial_no,
+            @Field("fee_type") String fee_type,
+            @Field("reminder") JSONObject reminder
+
+    );
+    @FormUrlEncoded
+    @POST("get-status-reminder")
+    Call<Object> getReminer(
+            @Field("school_id") String school_id
+    );
+
+    /*school_id:ee99d168-cd9d-4f22-9632-4fb36f8e5747
+added_employeeid:d299d357-291a-4466-aef4-3386f98f7ac4
+academic_start_date:2019-01-01
+session_serial_no:1
+fee_type:Exam
+reminder:{'1':{'reminder_no':'1','no_of_days':'2','from_time':'1:55 pm','to_time':'2:55 pm','reminder_text':'hey hello how are you had dinner'}}*/
 
 
     @FormUrlEncoded
