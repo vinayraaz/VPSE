@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +61,7 @@ public class Fragment_AddSubject extends Fragment implements View.OnClickListene
     RecyclerView recyclerView;
     String editvalue = "";
     AssessmentAdapter adapter;
+    LinearLayout ll_subject;
 TextView tvSection;
     public Fragment_AddSubject() {
     }
@@ -89,9 +91,9 @@ TextView tvSection;
         spDivision = view.findViewById(R.id.spDivision);
         spClass = view.findViewById(R.id.spClass);
         spSection = view.findViewById(R.id.spSection);
-      //  spSubject = view.findViewById(R.id.spSubject);
         recyclerView = view.findViewById(R.id.recyclerView);
         tvSection = view.findViewById(R.id.section_tv);
+        ll_subject = view.findViewById(R.id.ll_subject);
 
 
         tvAdd = view.findViewById(R.id.tvAdd);
@@ -99,6 +101,8 @@ TextView tvSection;
         edSubCode = view.findViewById(R.id.ed_sub_code);
         edSubType = view.findViewById(R.id.ed_subject_type);
         apiService = ApiUtils.getAPIService();
+
+
         listDivision = new ArrayList<>();
         listClass = new ArrayList<>();
         modelArrayList = new ArrayList<>();
@@ -107,6 +111,11 @@ TextView tvSection;
         listSection = new ArrayList<>();
         sectionSubjectModels = new ArrayList<>();
         sectionSubjectModelsNew = new ArrayList<>();
+
+        spSection.setVisibility(View.INVISIBLE);
+        edSubName.setVisibility(View.GONE);
+        edSubCode.setVisibility(View.GONE);
+        edSubType.setVisibility(View.GONE);
     }
 
 
@@ -115,7 +124,7 @@ TextView tvSection;
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
                 listDivision.clear();
-                listDivision.add(0, "Select Division");
+                listDivision.add(0, "-Division-");
                 boolean statusDivision = false;
                 if (response.isSuccessful()) {
                     try {
@@ -174,6 +183,10 @@ TextView tvSection;
                 listSubject.clear();
                 strDiv = parent.getSelectedItem().toString();
 
+                spSection.setVisibility(View.GONE);
+                edSubName.setVisibility(View.GONE);
+                edSubCode.setVisibility(View.GONE);
+                edSubType.setVisibility(View.GONE);
 
                 JSONArray array = new JSONArray();
                 JSONObject jsonObject = new JSONObject();
@@ -204,7 +217,7 @@ TextView tvSection;
         sectionSubjectModelsNew.clear();
         listSection.clear();
         listClass.clear();
-        listClass.add(0, "Select Class");
+        listClass.add(0, "-Class-");
 
         apiService.getClassSections(Constant.SCHOOL_ID, jsonObject).enqueue(new Callback<Object>() {
             @Override
@@ -287,9 +300,14 @@ TextView tvSection;
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 listSection.clear();
-                listSection.add("Select Section");
+                listSection.add("-Section-");
                 sectionSubjectModels.clear();
                 str_class = adapterView.getSelectedItem().toString();
+
+                spSection.setVisibility(View.VISIBLE);
+                edSubName.setVisibility(View.VISIBLE);
+                edSubCode.setVisibility(View.VISIBLE);
+                edSubType.setVisibility(View.VISIBLE);
 
                 for (int j = 0; j < modelArrayList.size(); j++) {
                     if (modelArrayList.get(j).getClassName().contains(str_class)) {
@@ -409,7 +427,11 @@ tvSection.setText(sectionkey);
                                             strDiv,str_class,strStatus));
 
                                 }
-                                setRecyclerViewNew(sectionSubjectModels);
+
+                                if (sectionSubjectModelsNew.size()>0) {
+                                    ll_subject.setVisibility(View.VISIBLE);
+                                    setRecyclerViewNew(sectionSubjectModels);
+                                }
                             }
                         }
                     } catch (JSONException je) {
@@ -432,7 +454,7 @@ tvSection.setText(sectionkey);
         listSubject.clear();
         sectionSubjectModels.clear();
         sectionSubjectModelsNew.clear();
-        listClass.add(0, "Select Class");
+        listClass.add(0, "-Class-");
 
         SharedPreferences preferences = getActivity().getSharedPreferences("DIV_CLASS", Context.MODE_PRIVATE);
         String strSecDivClass = preferences.getString("DIV_CLASS", "");
@@ -468,7 +490,7 @@ tvSection.setText(sectionkey);
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 listSection.clear();
                 listSubject.clear();
-                listSection.add("Select Section");
+                listSection.add("-Section-");
                 str_class = adapterView.getSelectedItem().toString();
                 for (int j = 0; j < modelArrayList.size(); j++) {
                     if (modelArrayList.get(j).getClassName().contains(str_class)) {
@@ -576,9 +598,9 @@ System.out.println("ADDSUB**S**"+listSubject.size());
                         Log.i("ADDSUB***Save*", "" + response.body());
                         Log.i("ADDSUB***", "" + response.code());
 
-                        listDivision.set(0,"Select Division");
-                        listClass.set(0,"Select Class");
-                        listSection.set(0,"Select section");
+                        listDivision.set(0,"-Division-");
+                        listClass.set(0,"-Class-");
+                        listSection.set(0,"-Section-");
                         /*sectionSubjectModels.add(new SectionSubjectModel(strSection,edSubName.getText().toString(),
                                 edSubCode.getText().toString(),edSubType.getText().toString(),
                                 strDiv,str_class,true));
